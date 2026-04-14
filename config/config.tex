@@ -1,0 +1,192 @@
+\documentclass[
+  paper=A4,
+  fontsize=12pt,
+  BCOR=12mm,
+  DIV=14,
+  parskip=half*,
+  headsepline,
+  listof=totoc,
+  footinclude=false,
+  headinclude=true,
+  final
+]{scrartcl}
+
+% Sprache und Zeichensatz
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% Zeilenabstand
+\usepackage[onehalfspacing]{setspace}
+
+% Kopf- und Fußzeilen (KOMA-kompatibel)
+\usepackage{scrlayer-scrpage}
+
+% Grafiken und Tabellen
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{placeins}
+\usepackage{float}
+
+% Farben und URLs
+\usepackage{xcolor}
+\usepackage{url}
+
+% Deutsche Anführungszeichen
+\usepackage[babel,german=quotes]{csquotes}
+
+% Mikrotypografie
+\usepackage[
+  activate={true,nocompatibility},
+  final,
+  tracking=true,
+  kerning=true,
+  spacing=true,
+  factor=1100,
+  stretch=10,
+  shrink=10
+]{microtype}
+
+% Mathematik-Symbole (u.a. \checkmark)
+\usepackage{amssymb}
+
+% Quellcode-Listings
+\usepackage{listings}
+
+% Literaturverwaltung
+\usepackage[
+  bibstyle=authoryear,
+  citestyle=authoryear-fhdw,
+  giveninits=false,
+  natbib=true,
+  urldate=long,
+  date=long,
+  dashed=false,
+  maxcitenames=3,
+  maxbibnames=99,
+  backend=biber
+]{biblatex}
+
+\addbibresource{library/library.bib}
+
+% PDF-Seiten einbinden
+\usepackage{pdfpages}
+
+% PDF-Links
+\usepackage[
+  pdfpagemode={UseOutlines},
+  plainpages=false,
+  breaklinks=true,
+  pdfpagelabels
+]{hyperref}
+
+% Abkürzungsverzeichnis
+\usepackage[
+  automake,
+  acronym,
+  nonumberlist,
+  toc,
+  section,
+  nopostdot,
+  hyperfirst=false,
+]{glossaries}
+\makeglossaries
+\input{config/Abkuerzungen}
+
+% Bessere Referenzen
+\usepackage[german,capitalise]{cleveref}
+
+% Überschriften vor Seitenende schützen
+\usepackage{needspace}
+\usepackage{etoolbox}
+\preto{\section}{\needspace{8\baselineskip}}
+\preto{\subsection}{\needspace{6\baselineskip}}
+\preto{\subsubsection}{\needspace{5\baselineskip}}
+
+% Bestimmte KOMA-Warnungen unterdrücken
+\usepackage{scrhack}
+
+% Harmlose Neudefinitions-Warnung von microtype unterdrücken
+\usepackage{silence}
+\WarningFilter{latex}{Command \showhyphens has changed}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Allgemeine Einstellungen
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setlength{\parindent}{0pt}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+% Witwen- und Waisenschutz
+\widowpenalty=10000
+\clubpenalty=10000
+\displaywidowpenalty=10000
+
+% Float-Platzierung lockern
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.4}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.75}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Kopf- und Fußzeilen
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{scrheadings}
+\automark[section]{section}
+\ihead{}
+\chead{}
+\ohead{\headmark}
+\ifoot{}
+\cfoot{}
+\ofoot{\pagemark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Listing-Einstellungen (sprachunabhängig – Sprache pro Listing angeben)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\definecolor{sh_comment}{rgb}{0.4, 0.4, 0.4}
+\definecolor{sh_keyword}{rgb}{0.13, 0.29, 0.53}
+\definecolor{sh_string}{rgb}{0.16, 0.5, 0.16}
+
+\lstset{
+  basicstyle=\small\ttfamily,
+  fontadjust,
+  xrightmargin=1mm,
+  xleftmargin=5mm,
+  tabsize=2,
+  columns=flexible,
+  showstringspaces=false,
+  rulesepcolor=\color{black},
+  showspaces=false,
+  showtabs=false,
+  captionpos=t,
+  frame=tb,
+  framerule=0.4pt,
+  lineskip=-0.3em,
+  breaklines=true,
+  float=htbp,
+  numbers=left,
+  numberstyle=\tiny\color{sh_comment},
+  numbersep=5pt,
+  keywordstyle=\color{sh_keyword}\bfseries,
+  commentstyle=\color{sh_comment}\itshape,
+  stringstyle=\color{sh_string},
+  literate=
+    {ä}{{\"{a}}}1 {ö}{{\"{o}}}1 {ü}{{\"{u}}}1
+    {Ä}{{\"{A}}}1 {Ö}{{\"{O}}}1 {Ü}{{\"{U}}}1
+    {ß}{{\ss{}}}1
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Hilfs-Makro für Quellen unter Abbildungen / Tabellen
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\source}[1]{\par\vspace{-2mm}{\footnotesize\textsf{\textbf{Quelle:}} \textsf{#1}}\par}

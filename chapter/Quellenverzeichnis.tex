@@ -1,0 +1,44 @@
+% =========================================================
+% Quellenverzeichnis
+%
+% Variante A (Standard): alle Quellen in einer Liste
+% → einfach \printbibliography verwenden (unten auskommentiert)
+%
+% Variante B (FHDW-Konvention): Quellen nach Typ getrennt
+% → erfordert keyword-Felder in der .bib-Datei:
+%     keywords = {mono}   für Monographien
+%     keywords = {mag}    für Aufsätze / Zeitschriften
+%     keywords = {web}    für Internetquellen
+%     keywords = {art}    für Zeitungsartikel
+%     keywords = {leg}    für Rechtsprechung
+%     keywords = {comp}   für Unternehmensunterlagen
+% =========================================================
+
+\clearpage
+\phantomsection
+\addcontentsline{toc}{section}{Quellenverzeichnis}
+\section*{Quellenverzeichnis}
+
+\setlength\bibitemsep{1.5\itemsep}
+\setlength{\bibhang}{2em}
+
+% ----- Variante A: eine ungekürzte Liste -----
+\printbibliography[heading=none]
+
+% ----- Variante B: nach Quelltyp getrennt (auskommentiert) -----
+% \begingroup
+% \sloppy
+% \defbibheading{mono}{\subsection*{Monographien}}
+% \defbibheading{mag}{\subsection*{Aufsätze in Sammelbänden und Zeitschriften}}
+% \defbibheading{web}{\subsection*{Internetquellen}}
+% \defbibheading{art}{\subsection*{Zeitungsartikel}}
+% \defbibheading{leg}{\subsection*{Rechtsprechung}}
+% \defbibheading{comp}{\subsection*{Unternehmensunterlagen / Gesprächsnotizen}}
+%
+% \printbibliography[heading=mono,keyword=mono]
+% \printbibliography[heading=mag,keyword=mag]
+% \printbibliography[heading=web,keyword=web]
+% \printbibliography[heading=art,keyword=art]
+% \printbibliography[heading=leg,keyword=leg]
+% \printbibliography[heading=comp,keyword=comp]
+% \endgroup

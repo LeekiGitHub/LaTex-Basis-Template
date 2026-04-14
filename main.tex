@@ -1,0 +1,86 @@
+\input{config/config}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Projektdaten – hier auf die eigene Arbeit anpassen
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\dokumententyp}{Projektdokumentation}        % z.B. Bachelorthesis, Seminararbeit
+\newcommand{\abgabedatum}{\today}
+\newcommand{\ort}{Bielefeld}                              % oder Paderborn, Mettmann, ...
+\newcommand{\dokumententitel}{Titel der Arbeit}
+\newcommand{\dokumentenautor}{Vorname Nachname}
+\newcommand{\dokumentenpruefer}{Prof. Dr. Vorname Nachname}
+\newcommand{\studiengang}{Wirtschaftsinformatik (IFWSXXXB)}
+\newcommand{\spezialisierungsbereich}{Modulbezeichnung}
+\newcommand{\martikelnummer}{123456}
+\newcommand{\dokumentenautoradress}{Musterstraße 1\\33100 Paderborn}
+\newcommand{\koorperationsunternehmen}{Unternehmen GmbH}  % nur für Sperrvermerk relevant
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  pdftitle={\dokumententitel},
+  pdfauthor={\dokumentenautor}
+}
+
+\begin{document}
+
+% =========================================================
+% Vorspann mit römischer Seitennummerierung
+% =========================================================
+\pagenumbering{Roman}
+
+% Titelseite
+\input{chapter/Titelseite}
+\clearpage
+
+% Sperrvermerk (nur bei vertraulichen Arbeiten einkommentieren)
+% \input{chapter/Sperrvermerk}
+% \clearpage
+
+% Ab hier beginnt die Seitennummerierung bei II
+\setcounter{page}{2}
+
+% Abkürzungsverzeichnis
+\renewcommand{\glossarypreamble}{\label{acronyms}}
+\printglossary[type=acronym, style=long, title=Abkürzungsverzeichnis, toctitle=Abkürzungsverzeichnis]
+\clearpage
+
+% Inhaltsverzeichnis
+\setcounter{tocdepth}{3}
+\phantomsection
+\addcontentsline{toc}{section}{Inhaltsverzeichnis}
+{\singlespacing\tableofcontents}
+\clearpage
+
+% Abbildungsverzeichnis
+\listoffigures
+\clearpage
+
+% Tabellenverzeichnis
+\listoftables
+\clearpage
+
+% =========================================================
+% Hauptteil mit arabischer Seitennummerierung
+% =========================================================
+\pagenumbering{arabic}
+
+\clearpage\input{chapter/Einleitung}
+\clearpage\input{chapter/Hauptteil}
+\clearpage\input{chapter/Fazit}
+
+% Quellenverzeichnis
+\clearpage
+\input{chapter/Quellenverzeichnis}
+
+% Anhang
+\clearpage
+\input{chapter/Anhang}
+
+% Ehrenwörtliche Erklärung
+\input{chapter/EhrenwoertlicheErklaerung}
+
+\end{document}
