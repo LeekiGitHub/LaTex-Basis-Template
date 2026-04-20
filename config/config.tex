@@ -1,8 +1,6 @@
 \documentclass[
   paper=A4,
   fontsize=12pt,
-  BCOR=12mm,
-  DIV=14,
   parskip=half*,
   headsepline,
   listof=totoc,
@@ -15,7 +13,17 @@
 \usepackage[ngerman]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{lmodern}
+\usepackage[
+  left=4cm,
+  right=2cm,
+  top=2.5cm,
+  bottom=2.5cm,
+  includehead=false,
+  includefoot=false
+]{geometry}
+
+% FHDW-Vorgabe: 12pt Times New Roman (alternative Option: 11pt Arial)
+\usepackage{newtxtext,newtxmath}
 
 % Zeilenabstand
 \usepackage[onehalfspacing]{setspace}

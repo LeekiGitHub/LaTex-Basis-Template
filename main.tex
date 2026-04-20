@@ -7,14 +7,20 @@
 \newcommand{\dokumententyp}{Projektdokumentation}        % z.B. Bachelorthesis, Seminararbeit
 \newcommand{\abgabedatum}{\today}
 \newcommand{\ort}{Bielefeld}                              % oder Paderborn, Mettmann, ...
+\newcommand{\fhdwstandort}{Paderborn}
 \newcommand{\dokumententitel}{Titel der Arbeit}
 \newcommand{\dokumentenautor}{Vorname Nachname}
 \newcommand{\dokumentenpruefer}{Prof. Dr. Vorname Nachname}
+\newcommand{\dokumentenzweitpruefer}{}                    % bei Bedarf z.B. Prof. Dr. Zweitpruefer
 \newcommand{\studiengang}{Wirtschaftsinformatik (IFWSXXXB)}
 \newcommand{\spezialisierungsbereich}{Modulbezeichnung}
 \newcommand{\martikelnummer}{123456}
 \newcommand{\dokumentenautoradress}{Musterstraße 1\\33100 Paderborn}
 \newcommand{\koorperationsunternehmen}{Unternehmen GmbH}  % nur für Sperrvermerk relevant
+\newif\ifmitexecutivesummary
+\mitexecutivesummaryfalse                                   % true = Executive Summary-Seite einblenden
+\newif\ifnutzepdferklaerung
+\nutzepdferklaerungfalse                                    % true = offizielle PDF-Erklärung einbinden
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -35,6 +41,12 @@
 % Titelseite
 \input{chapter/Titelseite}
 \clearpage
+
+% Executive Summary (optional)
+\ifmitexecutivesummary
+  \input{chapter/ExecutiveSummary}
+  \clearpage
+\fi
 
 % Sperrvermerk (nur bei vertraulichen Arbeiten einkommentieren)
 % \input{chapter/Sperrvermerk}
@@ -63,6 +75,10 @@
 \listoftables
 \clearpage
 
+% Anhangsverzeichnis (empfohlen, falls ein Anhang genutzt wird)
+\input{chapter/Anhangsverzeichnis}
+\clearpage
+
 % =========================================================
 % Hauptteil mit arabischer Seitennummerierung
 % =========================================================
@@ -81,6 +97,10 @@
 \input{chapter/Anhang}
 
 % Ehrenwörtliche Erklärung
-\input{chapter/EhrenwoertlicheErklaerung}
+\ifnutzepdferklaerung
+  \input{chapter/EhrenwoertlicheErklaerungPDF}
+\else
+  \input{chapter/EhrenwoertlicheErklaerung}
+\fi
 
 \end{document}
