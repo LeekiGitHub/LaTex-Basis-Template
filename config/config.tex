@@ -59,6 +59,9 @@
 ]{microtype}
 
 % Mathematik-Symbole (u.a. \checkmark)
+% Hinweis: newtxmath definiert \Bbbk bereits, daher vor amssymb zurücksetzen,
+% um Fehler "Command \Bbbk already defined" zu vermeiden.
+\let\Bbbk\relax
 \usepackage{amssymb}
 
 % Quellcode-Listings
