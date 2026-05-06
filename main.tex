@@ -55,6 +55,10 @@
 % Ab hier beginnt die Seitennummerierung bei II
 \setcounter{page}{2}
 
+% Verzeichnisse einheitlich einzeilig setzen
+% (FHDW-Vorgabe 1,5-zeilig betrifft den Fließtext, nicht Verzeichnisse)
+\begin{spacing}{1}
+
 % Abkürzungsverzeichnis
 \renewcommand{\glossarypreamble}{\label{acronyms}}
 \printglossary[type=acronym, style=long, title=Abkürzungsverzeichnis, toctitle=Abkürzungsverzeichnis]
@@ -64,7 +68,7 @@
 \setcounter{tocdepth}{3}
 \phantomsection
 \addcontentsline{toc}{section}{Inhaltsverzeichnis}
-{\singlespacing\tableofcontents}
+\tableofcontents
 \clearpage
 
 % Abbildungsverzeichnis
@@ -79,6 +83,8 @@
 \input{chapter/Anhangsverzeichnis}
 \clearpage
 
+\end{spacing}
+
 % =========================================================
 % Hauptteil mit arabischer Seitennummerierung
 % =========================================================
@@ -88,19 +94,24 @@
 \clearpage\input{chapter/Hauptteil}
 \clearpage\input{chapter/Fazit}
 
-% Quellenverzeichnis
+% Quellenverzeichnis (einzeilig)
 \clearpage
+\begin{spacing}{1}
 \input{chapter/Quellenverzeichnis}
+\end{spacing}
 
 % Anhang
 \clearpage
 \input{chapter/Anhang}
 
-% Ehrenwörtliche Erklärung
+% Ehrenwörtliche Erklärung (einzeilig)
+\clearpage
+\begin{spacing}{1}
 \ifnutzepdferklaerung
   \input{chapter/EhrenwoertlicheErklaerungPDF}
 \else
   \input{chapter/EhrenwoertlicheErklaerung}
 \fi
+\end{spacing}
 
 \end{document}
